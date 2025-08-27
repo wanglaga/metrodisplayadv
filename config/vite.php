@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'build_path' => base_path('public/build/manifest.json'),
+    'build_path' => public_path('build'),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,5 +40,7 @@ return [
         'resources/css/app.css',
         'resources/js/app.js',
     ],
+
+    
 
 ];
