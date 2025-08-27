@@ -35,7 +35,13 @@
             transform: translateY(0);
         }
     </style>
-    @vite('resources/css/app.css')
+    @if (app()->environment('local'))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @else
+        <!-- Production: pakai hasil build Vite -->
+        <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+        <script type="module" src="{{ asset('build/assets/app.js') }}"></script>
+    @endif
     @livewireStyles
 </head>
 
@@ -115,7 +121,8 @@
     </div>
 
     <!-- LAYANAN -->
-    <section class="fade-up max-w-screen py-10 justify-center mx-auto p-5 mt-[3rem] bg-gradient-to-b from-white to-slate-100">
+    <section
+        class="fade-up max-w-screen py-10 justify-center mx-auto p-5 mt-[3rem] bg-gradient-to-b from-white to-slate-100">
         <div class="flex flex-col max-w-screen-lg mx-auto md:flex-row gap-[25px]">
             <div class="flex-1 md:mx-auto p-2">
                 <h2 class="text-[30px] font-bold text-slate-900 text-center">Layanan Kami</h2>
@@ -185,7 +192,8 @@
                         <!-- Gambar Produk -->
                         <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
                             href="{{ route('product.detail', $product->slug) }}">
-                            <img class="object-cover w-full h-full" src="{{ asset('storage/' . $product->main_image) }}"
+                            <img class="object-cover w-full h-full"
+                                src="{{ asset('storage/' . $product->main_image) }}"
                                 alt="{{ $product->nama_produk }}" />
                         </a>
 
@@ -414,7 +422,8 @@
         </div>
     </section>
     <!-- TRUSTED PARTNER -->
-    <section class="fade-up max-w-screen md:h-[600px] h-full mx-auto pt-[3rem] p-5 bg-gradient-to-b from-slate-100 to-white">
+    <section
+        class="fade-up max-w-screen md:h-[600px] h-full mx-auto pt-[3rem] p-5 bg-gradient-to-b from-slate-100 to-white">
         <div class="flex flex-col max-w-screen-lg mx-auto md:flex-row gap-[25px]">
             <div class="flex-1 md:mx-auto p-2 mb-4">
                 <h2 class="text-[30px] font-bold text-slate-900 text-center">Our Trusted Partner</h2>
