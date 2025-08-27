@@ -22,7 +22,13 @@
     <title>{{ $title . $product->nama_produk ?? 'Metro Display ADV' }}</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+    @if (app()->environment('local'))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @else
+        <!-- Production: pakai hasil build Vite -->
+        <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+        <script type="module" src="{{ asset('build/assets/app.js') }}"></script>
+    @endif
     <style>
         .fade {
             transition: opacity 0.3s ease;

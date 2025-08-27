@@ -1,4 +1,10 @@
-<link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+@if (app()->environment('local'))
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+@else
+    <!-- Production: pakai hasil build Vite -->
+    <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+    <script type="module" src="{{ asset('build/assets/app.js') }}"></script>
+@endif
 <div class="p-6 rounded-lg space-y-8">
 
     {{-- QR Code di atas --}}
