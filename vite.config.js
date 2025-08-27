@@ -1,6 +1,4 @@
-import {
-    defineConfig
-} from 'vite';
+import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from "@tailwindcss/vite";
 
@@ -9,10 +7,12 @@ export default defineConfig({
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
+            buildDirectory: 'build', // <- folder build di root
         }),
         tailwindcss(),
     ],
-    server: {
-        cors: true,
+    build: {
+        outDir: 'build', // <- folder build akan dibuat di root
+        emptyOutDir: true,
     },
 });
