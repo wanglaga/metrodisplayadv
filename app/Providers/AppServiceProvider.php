@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Category;
+use Illuminate\Foundation\Vite;
 use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind('path.public', function () {
-            return base_path(); // public path = public_html
+        $this->app->singleton(Vite::class, function ($app) {
+            return new Vite(
+                manifestPath: base_path('public/build/manifest.json'),
+                hotFile: base_path('public/hot')
+            );
         });
     }
 
