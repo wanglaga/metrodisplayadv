@@ -17,9 +17,11 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(Vite::class, function ($app) {
+            // urutannya: manifestPath, hotFile, buildDirectory
             return new Vite(
-                manifestPath: base_path('public/build/manifest.json'),
-                hotFile: base_path('public/hot')
+                base_path('public/build/manifest.json'), // manifest
+                base_path('public/hot'),                 // hot file
+                'build'                                  // folder build
             );
         });
     }
